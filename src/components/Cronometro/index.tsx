@@ -1,8 +1,19 @@
+import React, {useState} from 'react';
 import Botao from "../botao";
 import Relogio from "./Relogio";
 import style from './Cronometro.module.scss';
+import { ITarefa } from "../../types/tarefa";
+import { tempoParaSegundos } from '../../common/utils/date';
 
-export default function(){
+interface Props {
+  selecionado : ITarefa | undefined
+  }
+
+export default function Cronometro({selecionado}: Props){
+  const [tempo, setTempo] = useState<Number>();
+  if (selecionado?.tempo){
+    tempoParaSegundos(selecionado.tempo);
+    }
   return(
     <div className={style.cronometro}>
       <p className={style.titulo}>
